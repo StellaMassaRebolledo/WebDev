@@ -13,11 +13,10 @@ mongoose.connect (dbURI.DB_CONNECTION);
 let mongoDB = mongoose.connection; 
 
 mongoDB.on ('error', console.error.bind(console, 'Connection Error: '));
-mongoDB.once ('open', () => {
-  console.log ('Connected to Mongo DB...');
+mongo.once ('open', () => {
+  Console.log ('Connected to Mongo DB...');
 })
 
-//Get the route modules
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 const { Console } = require('console');

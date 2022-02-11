@@ -14,7 +14,7 @@ let mongoDB = mongoose.connection;
 
 mongoDB.on ('error', console.error.bind(console, 'Connection Error: '));
 mongoDB.once ('open', () => {
-  console.log ('Connected to Mongo DB...');
+  Console.log ('Connected to Mongo DB...');
 })
 
 //Get the route modules

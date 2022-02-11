@@ -1,0 +1,4 @@
+module.exports={
+    "DB_CONNNE" : "mongodb+srv://SMassa:HtH3HdJywrd1XWno@cluster002.ayqg5.mongodb.net/comp229002"
+}
+
