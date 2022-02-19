@@ -58,7 +58,7 @@ module.exports.processAddPage = (req, res, next) => {
         {
             // refresh the book list
             console.log(item);
-            res.redirect('/inventory/list');
+            res.redirect('/inventory/list'); //function from above
         }
     });
 }
