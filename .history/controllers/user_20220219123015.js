@@ -125,7 +125,7 @@ module.exports.login = function(req, res, next){
         else
         {
           
-            res.render('contacts',
+            res.render('/contacts',
             {
                 title: 'Business Contact List',
                 UserList: userList,

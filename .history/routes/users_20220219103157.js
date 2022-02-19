@@ -2,17 +2,7 @@ var express = require('express');
 var router = express.Router();
 let userController = require('../controllers/user')
 
-// helper function for guard purposes
-function requireAuth(req, res, next)
-{
-    // check if the user is logged in
-    if(!req.isAuthenticated())
-    {
-        req.session.url = req.originalUrl;
-        return res.redirect('/users/login');
-    }
-    next();
-}
+
 
 /* GET users listing. */
 router.get('/', userController.user);
@@ -32,11 +22,11 @@ router.post('/login', userController.login);
 router.get('/signout', userController.signout);
 
 //Contact List
-router.get('/business', requireAuth, userController.list);
+router.get('/list', userController.list);
 
 // Routers for edit. Specifying :id, allows me to use it as a param in controllers
-router.get('/update/:id', requireAuth, userController.displayEditPage);
-router.post('/update/:id', requireAuth, userController.processEditPage);
+router.get('/edit/:id', requireAuth, userController.displayEditPage);
+router.post('/edit/:id', requireAuth, userController.processEditPage);
 
 // Delete
 router.get('/delete/:id', requireAuth, userController.performDelete);

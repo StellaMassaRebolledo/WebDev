@@ -114,7 +114,7 @@ module.exports.login = function(req, res, next){
     res.redirect('/');
   };
 
-  
+  /*
   exports.list = function(req, res, next) {
     User.find((err,userList)=>
     {
@@ -136,7 +136,7 @@ module.exports.login = function(req, res, next){
     });
 }
 
-
+*/
 
 module.exports.displayEditPage = (req, res, next) => {
   let id = req.params.id;
@@ -167,14 +167,19 @@ module.exports.processEditPage = (req, res, next) => {
       _id: req.body.id,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      contactNumber: req.body.contactNumber,
+      contactNumber: req.body.contac
       email: req.body.email,
-            
+      size : {
+          h: req.body.size_h,
+          w: req.body.size_w,
+          uom: req.body.size_uom,
+      },
+      tags: req.body.tags.split(",").map(word => word.trim())
   });
 
-  // console.log(updatedContact);
+  // console.log(updatedItem);
 
-  Inventory.updateOne({_id: id}, updatedContact, (err) => {
+  Inventory.updateOne({_id: id}, updatedItem, (err) => {
       if(err)
       {
           console.log(err);
@@ -184,7 +189,7 @@ module.exports.processEditPage = (req, res, next) => {
       {
           // console.log(req.body);
           // refresh the book list
-          res.redirect('/user/list');
+          res.redirect('/inventory/list');
       }
   });
 }
@@ -201,7 +206,7 @@ module.exports.performDelete = (req, res, next) => {
       else
       {
           // refresh the book list
-          res.redirect('/user/list');
+          res.redirect('/inventory/list');
       }
   });
 }

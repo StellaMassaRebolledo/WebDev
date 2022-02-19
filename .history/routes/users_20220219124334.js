@@ -35,8 +35,8 @@ router.get('/signout', userController.signout);
 router.get('/business', requireAuth, userController.list);
 
 // Routers for edit. Specifying :id, allows me to use it as a param in controllers
-router.get('/update/:id', requireAuth, userController.displayEditPage);
-router.post('/update/:id', requireAuth, userController.processEditPage);
+router.get('/users/update/:id', requireAuth, userController.displayEditPage);
+router.post('/users/update/:id', requireAuth, userController.processEditPage);
 
 // Delete
 router.get('/delete/:id', requireAuth, userController.performDelete);

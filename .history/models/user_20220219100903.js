@@ -6,7 +6,7 @@ let UserSchema = mongoose.Schema(
     {
         firstName: String,
         lastName: String,
-        contactNumber: String,
+        contactNumber
         email: {
             type: String,
             match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]

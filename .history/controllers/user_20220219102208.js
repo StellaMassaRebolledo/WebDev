@@ -114,7 +114,7 @@ module.exports.login = function(req, res, next){
     res.redirect('/');
   };
 
-  
+  /*
   exports.list = function(req, res, next) {
     User.find((err,userList)=>
     {
@@ -136,7 +136,7 @@ module.exports.login = function(req, res, next){
     });
 }
 
-
+*/
 
 module.exports.displayEditPage = (req, res, next) => {
   let id = req.params.id;

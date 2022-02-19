@@ -32,10 +32,10 @@ router.post('/login', userController.login);
 router.get('/signout', userController.signout);
 
 //Contact List
-router.get('/business', requireAuth, userController.list);
+router.get('/users/business', requireAuth, userController.list);
 
 // Routers for edit. Specifying :id, allows me to use it as a param in controllers
-router.get('/update/:id', requireAuth, userController.displayEditPage);
+router.get('/usersupdate/:id', requireAuth, userController.displayEditPage);
 router.post('/update/:id', requireAuth, userController.processEditPage);
 
 // Delete
