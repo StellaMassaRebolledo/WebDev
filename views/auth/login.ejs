@@ -8,7 +8,7 @@
             <% for(var i in messages) { %>
                 <div class="flash"><%= messages[i] %></div>
             <% } %>
-            <form action="/users/signin" method="post">
+            <form action="/users/login" method="post">
                 <div class="form-group">
                     <label>Username:</label>
                     <input type="text" name="username" class="form-control" />
@@ -19,7 +19,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="Sign In" />                    
+                    <input class="btn btn-primary" type="submit" value="Login" />                    
                 </div>
                 <br>
                 <div class="form-group">

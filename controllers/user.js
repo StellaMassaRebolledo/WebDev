@@ -86,23 +86,23 @@ module.exports.signup = function(req, res, next) {
   };
 
 
-  module.exports.renderSignin = function(req, res, next) {
+  module.exports.renderLogin = function(req, res, next) {
     if (!req.user) {
-      res.render('auth/signin', {
-        title: 'Sign-in Form',
+      res.render('auth/login', {
+        title: 'Login',
         messages: req.flash('error') || req.flash('info')
       });
     } else {
       console.log(req.user);
-      return res.redirect('/');
+      return res.redirect('/users/login');
     }
   };
 
  
-module.exports.signin = function(req, res, next){
+module.exports.login = function(req, res, next){
     passport.authenticate('local', {   
-      successRedirect: req.session.url || '/',
-      failureRedirect: '/users/signin',
+      successRedirect: req.session.url || '/users/business',
+      failureRedirect: '/users/login',
       failureFlash: true
     })(req, res, next);
     delete req.session.url;
@@ -113,3 +113,24 @@ module.exports.signin = function(req, res, next){
     req.logout();
     res.redirect('/');
   };
+
+  exports.list = function(req, res, next) {
+    Inventory.find((err,inventoryList)=>
+    {
+        if(err)
+        {
+            return console.error(err);
+        }
+        else
+        {
+          
+            res.render('contacts',
+            {
+                title: 'Business Contact List',
+                InventoryList: inventoryList,
+                userName: req.user ? req.user.username : ''
+            }
+            );
+        }
+    });
+}

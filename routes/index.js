@@ -6,8 +6,11 @@ let indexController = require ('../controllers/index');
 router.get('/', indexController.home); 
 
 /* GET about page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'About Me' });
-});
+router.get('/about', indexController.about);
+
+/* GET projects page. */
+router.get('/projects', indexController.projects);
+
+
 
 module.exports = router;

@@ -5,6 +5,7 @@ exports.home = function(req, res, next) {
   });
 }
 
+
 exports.projects = function(req, res, next) {
   res.render(
       'index', 
@@ -13,4 +14,11 @@ exports.projects = function(req, res, next) {
           userName: req.user ? req.user.username : '' 
       }
   );
+}
+
+exports.about = function(req, res, next) {
+  res.render('about', { 
+      title: 'About Me',
+      userName: req.user ? req.user.username : '' 
+  });
 }
