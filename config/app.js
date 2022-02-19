@@ -3,19 +3,10 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let session = require('express-session');
+let flash = require('connect-flash');
+let passport = require('passport');
 
-//Database Setup
-let mongoose = require ('mongoose');
-let dbURI = require ('../config/db');
-
-//Connect to the DB
-mongoose.connect (dbURI.DB_CONNECTION);
-let mongoDB = mongoose.connection; 
-
-mongoDB.on ('error', console.error.bind(console, 'Connection Error: '));
-mongoDB.once ('open', () => {
-  console.log ('Connected to Mongo DB...');
-})
 
 //Get the route modules
 let indexRouter = require('../routes/index');
@@ -23,6 +14,12 @@ let usersRouter = require('../routes/users');
 let inventoryRouter = require ('../routes/inventory')
 
 let app = express();
+
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: "sessionSecret"
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
@@ -36,11 +33,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 
+// Sets up passport
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Once express is set up, then we configure routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/inventory', inventoryRouter);
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handler. Event listeners to handle errors are configured once set up everything else
 app.use(function(req, res, next) {
   next(createError(404));
 });

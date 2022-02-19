@@ -1,32 +1,37 @@
-//importing express to handle my routing
 let express = require('express');
-
-//Calling the router method from express into a variable
 let router = express.Router();
+let inventoryController = require('../controllers/inventory');
 
-//Importing mongoose to handle my db
-let mongoose = require('mongoose');
-
-//Importing my route to my db handle
-let Inventory = require('../models/inventory')
-
-router.get('/list', function(req, res, next) {
-    Inventory.find((err,inventoryList)=>
+// helper function for guard purposes
+function requireAuth(req, res, next)
+{
+    // check if the user is logged in
+    if(!req.isAuthenticated())
     {
-        if(err)
-        {
-            return console.error(err);
-        }
-        else
-        {
-            console.log(inventoryList)
+        req.session.url = req.originalUrl;
+        return res.redirect('/users/signin');
+    }
+    next();
+}
 
-        }
-    });
+router.get('/list', inventoryController.list);
+
+/* GET Route for displaying the Add page - CREATE Operation */
+router.get('/add', requireAuth, inventoryController.displayAddPage);
+/* POST Route for processing the Add page - CREATE Operation */
+router.post('/add', requireAuth, inventoryController.processAddPage);
+
+// Routers for edit. Specifying :id, allows me to use it as a param in controllers
+router.get('/edit/:id', requireAuth, inventoryController.displayEditPage);
+router.post('/edit/:id', requireAuth, inventoryController.processEditPage);
+
+// Delete
+router.get('/delete/:id', requireAuth, inventoryController.performDelete);
+
+module.exports = router;
 
 
-    res.render('index', { title: 'About Me' });
-  });
 
-  //exporting the module that is handling the request to my collection 
-  module.exports = router;
+
+
+
