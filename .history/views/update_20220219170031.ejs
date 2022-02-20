@@ -1,0 +1,66 @@
+<% include partials/header.ejs %>
+
+<!-- Content for the Add_Edit page -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <input type="hidden"
+                        name="id"
+                        value="<%= contact._id %>"
+                    >
+                    <label for="firstNameTextField">First Name</label>
+                    <input type="text" class="form-control"
+                        id="firstNameTextField"
+                        placeholder="Enter first name"
+                        name="firstName" 
+                        value="<%= contact.firstName %>"
+                        required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="lastNameTextField">Last Name</label>
+                    <input type="text" class="form-control"
+                        id="lastNameTextField"
+                        placeholder="Enter last name"
+                        name="lastName" 
+                        value="<%= contact.lastName %>"
+                        required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="emailTextField">Email</label>
+                    <input type="text" class="form-control"
+                        id="emailTextField"
+                        placeholder="Enter email"
+                        name="email" 
+                        value="<%= contact.email %>"
+                    >
+                </div>
+                <br/>
+              
+               <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i> 
+                    Update
+                </button>
+                
+                <a href="/users/business" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> 
+                    Cancel
+                </a>
+
+                <a href="/users/delete <%= UserList._id %" class="btn btn-danger btn-md">
+                    <i class="fas fa-trash-alt"></i>
+                    Delete
+                    </a>     
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<% include partials/footer.ejs %>

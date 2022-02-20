@@ -1,0 +1,53 @@
+<% include partials/header.ejs %>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+</script>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="row">
+        <h1><%= title %></h1>
+        <br>
+        <div class="table-responsive">
+            <table id="contactTab" class="table table-bordered table-striped table-hover sortable">
+                <!-- Header Row-->
+                <tr>
+                    <th class="text-center">firstName</th>
+                    <th class="text-center">lastName</th>
+                    <th class="text-center">email</th>
+                    
+                    <th class="text-center" colspan="2">Actions</th>
+                </tr>
+
+                <!-- Repeatable Template Row -->
+
+                <% for(let count = 0; count < UserList.length; count++) {%>
+                
+                    <tr>
+                        <td class="text-center"><%= UserList[count].firstName %></td>
+                        <td class="text-center"><%= UserList[count].lastName %></td>
+                        <td class="text-center"><%= UserList[count].email %></td>
+                       
+                        
+                        <td class="text-center">
+                            <a href="/users/update/<%= UserList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="/users/delete/<%= UserList[count]._id %>" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr> 
+                <%} %>
+                
+            </table>
+        </div>
+    </div>
+  </main>
+
+<% include partials/footer.ejs %>

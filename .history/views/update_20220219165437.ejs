@@ -1,0 +1,70 @@
+<% include partials/header.ejs %>
+
+<!-- Content for the Add_Edit page -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <input type="hidden"
+                        name="id"
+                        value="<%= contact._id %>"
+                    >
+                    <label for="firstNameTextField">First Name</label>
+                    <input type="text" class="form-control"
+                        id="firstNameTextField"
+                        placeholder="Enter first name"
+                        name="firstName" 
+                        value="<%= contact.firstName %>"
+                        required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="lastNameTextField">Last Name</label>
+                    <input type="text" class="form-control"
+                        id="lastNameTextField"
+                        placeholder="Enter last name"
+                        name="lastName" 
+                        value="<%= contact.lastName %>"
+                        required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="emailTextField">Email</label>
+                    <input type="text" class="form-control"
+                        id="emailTextField"
+                        placeholder="Enter email"
+                        name="email" 
+                        value="<%= contact.email %>"
+                    >
+                </div>
+                <br />
+                                
+                <br/>
+
+                <% for(let count = 0; count < UserList.length; count++) {%>
+                
+                    <tr>
+                        <td class="text-center">
+                            <a href="/users/update/<%= UserList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="/users/business/<%= UserList[count]._id %>" class="btn btn-warning btn-sm">
+                            <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="/users/delete/<%= UserList[count]._id %>" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr> <%} %>        
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<% include partials/footer.ejs %>
