@@ -9,7 +9,7 @@ router.get('/', indexController.home);
 router.get('/about', indexController.about);
 
 /* GET services page. */
-router.get('/services', indexController.services);
+router.get('/projects', indexController.projects);
 
 /* GET projects page. */
 router.get('/projects', indexController.projects);

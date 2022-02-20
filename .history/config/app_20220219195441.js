@@ -14,7 +14,6 @@ let usersRouter = require('../routes/users');
 
 let app = express();
 
-//save the session uninitialize
 app.use(session({
   saveUninitialized: true,
   resave: true,
@@ -41,7 +40,7 @@ app.use(passport.session());
 //Once express is set up, then we configure routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/inventory', inventoryRouter);
 
 // catch 404 and forward to error handler. Event listeners to handle errors are configured once set up everything else
 app.use(function(req, res, next) {

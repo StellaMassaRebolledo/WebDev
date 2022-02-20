@@ -23,9 +23,9 @@ exports.about = function(req, res, next) {
   });
 }
 
-exports.services = function(req, res, next) {
+exports.about = function(req, res, next) {
   res.render('services', { 
-      title: 'Services',
+      title: 'About Me',
       userName: req.user ? req.user.username : '' 
   });
 }

@@ -8,8 +8,8 @@ router.get('/', indexController.home);
 /* GET about page. */
 router.get('/about', indexController.about);
 
-/* GET services page. */
-router.get('/services', indexController.services);
+/* GET projects page. */
+router.get('/projects', indexController.projects);
 
 /* GET projects page. */
 router.get('/projects', indexController.projects);

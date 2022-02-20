@@ -14,7 +14,7 @@ let usersRouter = require('../routes/users');
 
 let app = express();
 
-//save the session uninitialize
+//save the session unin
 app.use(session({
   saveUninitialized: true,
   resave: true,

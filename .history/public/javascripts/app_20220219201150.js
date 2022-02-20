@@ -1,5 +1,3 @@
-//Modified by Stella Massa 
-//student id:301207800
 
 if(getTitle == "Business Contact List")
 {
